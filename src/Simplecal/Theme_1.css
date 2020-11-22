@@ -1,0 +1,80 @@
+.scal_container{
+    --scal-selbg: dodgerblue;
+
+    padding: var(--scal-gap);
+    margin: var(--scal-gap);
+}
+.scal_container:focus-within{
+    outline: 1px solid var(--scal-selbg);
+}
+
+.scal_dayButton{
+    border-radius: 2px;
+}
+
+.scal_dayButton.scal_daySelected:focus{
+    outline: none
+}
+
+.scal_container:not(.scal_fullDisabled) .scal_title{
+    border-radius: 2px;
+}
+
+@media screen and (hover:hover){
+    .scal_container:not(.scal_fullDisabled) .scal_dayButton:not(.scal_dayDisabled){
+        transition: transform 0.2s ease,
+                    background-color 0.125s ease;
+    }
+    .scal_container:not(.scal_fullDisabled) .scal_dayButton:not(.scal_dayDisabled):not(.scal_daySelected):hover{
+        background: rgba( 0, 0, 0, 0.1 );
+    }
+    .scal_container:not(.scal_fullDisabled) .scal_dayButton:not(.scal_dayDisabled):not(.scal_daySelected):active{
+        transform: scale(0.95);
+    }
+    .scal_container:not(.scal_fullDisabled) .scal_title:hover{
+        background: rgba( 0, 0, 0, 0.1 );
+    }
+}
+
+.scal_dayButton.scal_dayDisabled{
+    opacity: 1;
+    background: repeating-linear-gradient( 45deg, transparent, transparent 0.25em, rgba(0,0,0,0.05) 0.25em, rgba(0,0,0,0.05) 0.5em)
+}
+
+.scal_footer{
+    font-size: 85%;
+    padding: 0 0.25em;
+    opacity: 0.75;
+}
+
+.scal_monthSelList details>summary{
+    background: rgba(0,0,0,0.1);
+}
+.scal_monthSelList details[open]>summary{
+    border-radius: 0 0 3px 3px;
+}
+.scal_monthSelList details[open]+details>summary{
+    border-radius: 3px 3px 0 0;
+}
+
+.scal_selMonths{
+    padding: var(--scal-gap);
+}
+.scal_selMonths .scal_selMonthEl{
+    border-radius: 3px;
+}
+@media screen and (hover:hover){
+    .scal_selMonths .scal_selMonthEl:hover{
+        background: rgba(0,0,0,0.1);
+    }
+}
+
+
+.scal_description input{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.scal_description input::-webkit-calendar-picker-indicator{
+    display:none
+}

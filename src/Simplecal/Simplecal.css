@@ -1,0 +1,187 @@
+.scal_container {
+    --scal-top-btn-size: 40px;
+    --scal-gap: 4px;
+    
+    --scal-weekdaynum: 7;
+    --scal-rowsnum: 5;
+
+    --scal-selbg: #000;
+    --scal-selcl: #fff;
+
+    display: grid;
+    grid-template-rows: max-content max-content auto;
+    row-gap: var(--scal-gap);
+    position: relative;
+    overflow: hidden;
+    contain: layout;
+}
+
+.scal_header {
+    display: grid;
+    height: var(--scal-top-btn-size);
+    grid-template-columns: var(--scal-top-btn-size) auto var(--scal-top-btn-size);
+    column-gap: var(--scal-gap);
+    user-select: none;
+}
+
+.scal_goLeft,
+.scal_goRight {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    contain: layout;
+}
+
+.scal_goLeft::before {
+    content: "\003c";
+}
+
+.scal_goRight::before {
+    content: "\003e";
+}
+
+.scal_goLeft::before,
+.scal_goRight::before {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: var(--scal-top-btn-size);
+    width: var(--scal-top-btn-size);
+    text-align: center;
+    line-height: var(--scal-top-btn-size);
+    font-size: calc(var(--scal-top-btn-size) - var(--scal-gap) * 2 );
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.scal_title{
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    contain: layout;
+    line-height: var(--scal-top-btn-size);
+    font-size: calc(var(--scal-top-btn-size) - var(--scal-gap) * 6 );
+}
+.scal_container.scal_fullDisabled .scal_title{
+    cursor: default;
+}
+
+
+.scal_dayNames{
+    display: grid;
+    grid-template-columns: repeat( var(--scal-weekdaynum), 1fr );
+    padding: var(--scal-gap) 0;
+    cursor: default;
+    user-select: none;
+    overflow: hidden;
+    contain: layout;
+}
+.scal_dayNames>div{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.7;
+    overflow: hidden;
+    contain: layout;
+}
+
+.scal_dayButtons{
+    display: grid;
+    grid-template-columns: repeat( var(--scal-weekdaynum), 1fr );
+    grid-template-rows: repeat( var(--scal-rowsnum), 1fr );
+}
+.scal_dayButton{
+    display: block;
+    min-height: var(--scal-top-btn-size);
+    line-height: var(--scal-top-btn-size);
+    user-select: none;
+    text-align: center;
+}
+.scal_container:not(.scal_fullDisabled) .scal_dayButton:not(.scal_dayDisabled):not(.scal_daySelected){
+    cursor: pointer;
+}
+.scal_dayButton.scal_daySelected{
+    background: var(--scal-selbg);
+    color: var(--scal-selcl);
+}
+.scal_dayButton.scal_dayPrevMonth:not(.scal_daySelected),
+.scal_dayButton.scal_dayNextMonth:not(.scal_daySelected){
+    opacity:0.5
+}
+.scal_dayButton.scal_dayDisabled{
+    opacity: 0.3;
+}
+
+.scal_container.scal_fullDisabled{
+    opacity:0.9
+}
+
+.scal_footer{
+    display: grid;
+    grid-template-columns: auto max-content;
+    overflow: hidden;
+    contain: layout;
+    column-gap: var(--scal-gap);
+}
+.scal_description{
+    overflow: hidden;
+    contain: layout;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.scal_todayBtn{
+    cursor: pointer;
+    user-select: none;
+    color: var(--scal-selbg);
+    padding: var(--scal-gap);
+}
+.scal_todayBtn.scal_todayDisabled{
+    color: initial;
+    cursor: default;
+    opacity: 0.667
+}
+
+.scal_error{
+    display: block;
+    padding: var(--scal-gap);
+    background: crimson !important;
+    color: white !important;
+    overflow: hidden;
+    contain: layout;
+}
+
+.scal_monthSelList{
+    max-height: calc( var(--scal-top-btn-size) * var(--scal-rowsnum) );
+    overflow-x:hidden;
+    overflow-y: auto;
+}
+
+.scal_monthSelList details summary{
+    padding: var(--scal-gap);
+    font-size: 110%;
+    cursor: pointer;
+}
+.scal_monthSelList details summary::-webkit-details-marker{
+    display: none;
+}
+.scal_selMonths{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.scal_selMonths .scal_selMonthEl{
+    height: var(--scal-top-btn-size);
+    line-height: var(--scal-top-btn-size);
+    cursor: pointer;
+    padding: var(--scal-gap);
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+
+.scal_description input{
+    width: 100%;
+    cursor: text;
+}
